@@ -1,0 +1,78 @@
+
+import anndata
+from frankencell import make_franken_cells
+import argparse
+
+
+def get_parser():
+
+    parser = argparse.ArgumentParser(fromfile_prefix_chars='@')
+    parser.add_argument('--rna-adata', '--rna', type = str, required=True)
+    parser.add_argument('--atac-adata','-atac', type = str, required=True)
+    parser.add_argument('--rna-read-depth', '-rrd', type = float, nargs=2, required=True)
+    parser.add_argument('--atac-read-depth', '-ard', type = float, nargs = 2, required=True)
+    parser.add_argument('--pure-states', '-p', type = str, nargs = 3, required=True)
+    parser.add_argument('--state-composition','-s', type = float, nargs=3, action='append')
+    parser.add_argument('--branch-times', '-b', type = float, nargs='+')
+    parser.add_argument('--n-jobs', '-j', type = int, default=1)
+    parser.add_argument('--rna-counts-layer','-rcl', type = str, default='counts')
+    parser.add_argument('--atac-counts-layer','-acl', type = str, default='counts')
+    parser.add_argument('--state-col', '-sc', type = str, default='leiden')
+    parser.add_argument('--sigmoid-aggression', '-a', type = float, default=5)
+    parser.add_argument('--no-sigmoid', action = 'store_const', const = True,
+        default = False)
+    parser.add_argument('--ptime-beta', '-ptb', type = float, default= 1.)
+    parser.add_argument('--ptime-alpha', '-pta', type = float, default=1.)
+    parser.add_argument('--max-depth', type = int, default = 2)
+    parser.add_argument('--max_width', type = int, default= 2)
+    parser.add_argument('--gamma', type = float, default= 0.1)
+    parser.add_argument('--n-cells', '-n', type = int, default=1000)
+    parser.add_argument('--seed', type = int, default=None)
+    parser.add_argument('--outfile', '-o', type = str, default = '')
+
+    return parser
+
+if __name__ == "__main__":
+
+    parser = get_parser()
+    args = parser.parse_args()
+
+    rna_data = anndata.read_h5ad(args.rna_adata)
+    atac_data = anndata.read_h5ad(args.atac_adata)
+
+    rna_rd = (args.rna_read_depth[0], 0., args.rna_read_depth[1])
+    atac_rd = (args.atac_read_depth[0], 0., args.atac_read_depth[1])
+
+    rna_frankendata, atac_frankendata = make_franken_cells(
+        seed = args.seed,
+        n_cells = args.n_cells,
+        gamma = args.gamma,
+        max_depth = args.max_depth,
+        max_width = args.max_width,
+        ptime_alpha = args.ptime_alpha,
+        ptime_beta = args.ptime_beta,
+        sigmoid_approach = not args.no_sigmoid,
+        sigmoid_aggression = args.sigmoid_aggression,
+        cell_state_col = args.state_col,
+        rna_counts_layer = args.rna_counts_layer,
+        atac_counts_layer = args.atac_counts_layer,
+        generate_cells = True,
+        n_jobs = args.n_jobs,
+        branch_times = args.branch_times,
+        state_compositions = args.state_composition,
+        pure_states = args.pure_states,
+        rna_read_depth_distribution = rna_rd,
+        atac_read_depth_distribution = atac_rd,
+        rna_adata = rna_data,
+        atac_adata = atac_data,
+    )
+
+    rna_frankendata.var['feature_type'] = 'RNA'
+    atac_frankendata.var['feature_type'] = 'ATAC'
+
+    merged = anndata.concat([rna_frankendata, atac_frankendata], 
+        axis = 1, uns_merge='first')
+
+    merged.obs = rna_frankendata.obs
+
+    merged.write_h5ad(args.outfile)   
