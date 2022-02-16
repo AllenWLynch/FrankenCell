@@ -1,0 +1,31 @@
+[2K[2KNamespace(batch_sizes=[32, 64, 128], cv=5, data='data/read_depth_tests/datasets/rd_test_trial_71_data.h5ad', dropout_range=[0.001, 0.1], embedding_key='X_umap_features', out_prefix='data/read_depth_tests/results/2022-02-11_read-depth-test_71', seed=None, skip_training=False, topic_range=[3, 5], train_size=0.8, tuning_iters=32)
+Traceback (most recent call last):
+  File "frankencell/test_algorithms/mira_test.py", line 234, in <module>
+    retrain=not args.skip_training,
+  File "frankencell/test_algorithms/mira_test.py", line 146, in main
+    frankendata = anndata.read_h5ad(data)
+  File "/Users/alynch/opt/miniconda3/envs/mirarep/lib/python3.7/site-packages/anndata/_io/h5ad.py", line 408, in read_h5ad
+    with h5py.File(filename, "r") as f:
+  File "/Users/alynch/opt/miniconda3/envs/mirarep/lib/python3.7/site-packages/h5py/_hl/files.py", line 408, in __init__
+    swmr=swmr)
+  File "/Users/alynch/opt/miniconda3/envs/mirarep/lib/python3.7/site-packages/h5py/_hl/files.py", line 173, in make_fid
+    fid = h5f.open(name, flags, fapl=fapl)
+  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
+  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
+  File "h5py/h5f.pyx", line 88, in h5py.h5f.open
+OSError: Unable to open file (unable to open file: name = 'data/read_depth_tests/datasets/rd_test_trial_71_data.h5ad', errno = 2, error message = 'No such file or directory', flags = 0, o_flags = 0)
+Traceback (most recent call last):
+  File "frankencell/evaluators/mira_eval.py", line 83, in <module>
+    results = main(data = args.data, results_file=args.test_results)
+  File "frankencell/evaluators/mira_eval.py", line 29, in main
+    data = anndata.read_h5ad(data)
+  File "/Users/alynch/opt/miniconda3/envs/mirarep/lib/python3.7/site-packages/anndata/_io/h5ad.py", line 408, in read_h5ad
+    with h5py.File(filename, "r") as f:
+  File "/Users/alynch/opt/miniconda3/envs/mirarep/lib/python3.7/site-packages/h5py/_hl/files.py", line 408, in __init__
+    swmr=swmr)
+  File "/Users/alynch/opt/miniconda3/envs/mirarep/lib/python3.7/site-packages/h5py/_hl/files.py", line 173, in make_fid
+    fid = h5f.open(name, flags, fapl=fapl)
+  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
+  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
+  File "h5py/h5f.pyx", line 88, in h5py.h5f.open
+OSError: Unable to open file (unable to open file: name = 'data/read_depth_tests/results/2022-02-11_read-depth-test_71_results_adata.h5ad', errno = 2, error message = 'No such file or directory', flags = 0, o_flags = 0)

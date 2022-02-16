@@ -29,6 +29,8 @@ def get_parser():
     parser.add_argument('--n-cells', '-n', type = int, default=1000)
     parser.add_argument('--seed', type = int, default=None)
     parser.add_argument('--outfile', '-o', type = str, default = '')
+    parser.add_argument('--max-read-depth-sd', type = float, nargs = 2, default=[3.,3.])
+
 
     return parser
 
@@ -56,6 +58,7 @@ if __name__ == "__main__":
         cell_state_col = args.state_col,
         rna_counts_layer = args.rna_counts_layer,
         atac_counts_layer = args.atac_counts_layer,
+        read_depth_max_sd = args.max_read_depth_sd,
         generate_cells = True,
         n_jobs = args.n_jobs,
         branch_times = args.branch_times,

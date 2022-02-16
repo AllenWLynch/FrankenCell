@@ -1,0 +1,148 @@
+[2KTrying to set attribute `.var` of view, copying.
+INFO:mira.adata_interface.topic_model:Predicting expression from genes from col: highly_variable
+INFO:mira.adata_interface.topic_model:Using highly-variable genes from col: highly_variable
+WARNING:mira.topic_model.base:Cuda unavailable. Will not use GPU speedup while training.
+[2KNamespace(batch_sizes=[32, 64, 128], cv=5, data='data/read_depth_tests/datasets/rd_test_trial_70_data.h5ad', dropout_range=[0.001, 0.1], embedding_key='X_umap_features', out_prefix='data/read_depth_tests/results/2022-02-11_read-depth-test_70', seed=None, skip_training=False, topic_range=[3, 5], train_size=0.8, tuning_iters=32)
+Epoch 0:   0%|          | 0/40 [00:00<?, ?it/s]Epoch 1 done. Recent losses: 2.345e+00:   0%|          | 0/40 [00:00<?, ?it/s]Epoch 2 done. Recent losses: 2.345e+00 --> 2.260e+00:   0%|          | 0/40 [00:00<?, ?it/s]Epoch 2 done. Recent losses: 2.345e+00 --> 2.260e+00:   2%|▎         | 1/40 [00:00<00:27,  1.42it/s]Epoch 3 done. Recent losses: 2.345e+00 --> 2.260e+00 --> 2.096e+00:   2%|▎         | 1/40 [00:01<00:27,  1.42it/s]Epoch 3 done. Recent losses: 2.345e+00 --> 2.260e+00 --> 2.096e+00:   5%|▌         | 2/40 [00:01<00:18,  2.05it/s]Epoch 4 done. Recent losses: 2.345e+00 --> 2.260e+00 --> 2.096e+00 --> 1.882e+00:   5%|▌         | 2/40 [00:01<00:18,  2.05it/s]Epoch 4 done. Recent losses: 2.345e+00 --> 2.260e+00 --> 2.096e+00 --> 1.882e+00:   8%|▊         | 3/40 [00:01<00:15,  2.38it/s]Epoch 5 done. Recent losses: 2.345e+00 --> 2.260e+00 --> 2.096e+00 --> 1.882e+00 --> 1.623e+00:   8%|▊         | 3/40 [00:01<00:15,  2.38it/s]Epoch 5 done. Recent losses: 2.345e+00 --> 2.260e+00 --> 2.096e+00 --> 1.882e+00 --> 1.623e+00:  10%|█         | 4/40 [00:01<00:14,  2.55it/s]Epoch 6 done. Recent losses: 2.260e+00 --> 2.096e+00 --> 1.882e+00 --> 1.623e+00 --> 1.340e+00:  10%|█         | 4/40 [00:02<00:14,  2.55it/s]Epoch 6 done. Recent losses: 2.260e+00 --> 2.096e+00 --> 1.882e+00 --> 1.623e+00 --> 1.340e+00:  12%|█▎        | 5/40 [00:02<00:13,  2.68it/s]Epoch 7 done. Recent losses: 2.096e+00 --> 1.882e+00 --> 1.623e+00 --> 1.340e+00 --> 1.060e+00:  12%|█▎        | 5/40 [00:02<00:13,  2.68it/s]Epoch 7 done. Recent losses: 2.096e+00 --> 1.882e+00 --> 1.623e+00 --> 1.340e+00 --> 1.060e+00:  15%|█▌        | 6/40 [00:02<00:12,  2.74it/s]Epoch 8 done. Recent losses: 1.882e+00 --> 1.623e+00 --> 1.340e+00 --> 1.060e+00 --> 8.619e-01:  15%|█▌        | 6/40 [00:02<00:12,  2.74it/s]Epoch 8 done. Recent losses: 1.882e+00 --> 1.623e+00 --> 1.340e+00 --> 1.060e+00 --> 8.619e-01:  18%|█▊        | 7/40 [00:02<00:11,  2.78it/s]Epoch 9 done. Recent losses: 1.623e+00 --> 1.340e+00 --> 1.060e+00 --> 8.619e-01 --> 7.416e-01:  18%|█▊        | 7/40 [00:03<00:11,  2.78it/s]Epoch 9 done. Recent losses: 1.623e+00 --> 1.340e+00 --> 1.060e+00 --> 8.619e-01 --> 7.416e-01:  20%|██        | 8/40 [00:03<00:11,  2.82it/s]Epoch 10 done. Recent losses: 1.340e+00 --> 1.060e+00 --> 8.619e-01 --> 7.416e-01 --> 6.519e-01:  20%|██        | 8/40 [00:03<00:11,  2.82it/s]Epoch 10 done. Recent losses: 1.340e+00 --> 1.060e+00 --> 8.619e-01 --> 7.416e-01 --> 6.519e-01:  22%|██▎       | 9/40 [00:03<00:10,  2.85it/s]Epoch 11 done. Recent losses: 1.060e+00 --> 8.619e-01 --> 7.416e-01 --> 6.519e-01 --> 5.868e-01:  22%|██▎       | 9/40 [00:03<00:10,  2.85it/s]Epoch 11 done. Recent losses: 1.060e+00 --> 8.619e-01 --> 7.416e-01 --> 6.519e-01 --> 5.868e-01:  25%|██▌       | 10/40 [00:03<00:10,  2.84it/s]Epoch 12 done. Recent losses: 8.619e-01 --> 7.416e-01 --> 6.519e-01 --> 5.868e-01 --> 5.464e-01:  25%|██▌       | 10/40 [00:04<00:10,  2.84it/s]Epoch 12 done. Recent losses: 8.619e-01 --> 7.416e-01 --> 6.519e-01 --> 5.868e-01 --> 5.464e-01:  28%|██▊       | 11/40 [00:04<00:10,  2.85it/s]Epoch 13 done. Recent losses: 7.416e-01 --> 6.519e-01 --> 5.868e-01 --> 5.464e-01 --> 5.322e-01:  28%|██▊       | 11/40 [00:04<00:10,  2.85it/s]Epoch 13 done. Recent losses: 7.416e-01 --> 6.519e-01 --> 5.868e-01 --> 5.464e-01 --> 5.322e-01:  30%|███       | 12/40 [00:04<00:09,  2.86it/s]Epoch 14 done. Recent losses: 6.519e-01 --> 5.868e-01 --> 5.464e-01 --> 5.322e-01 --> 5.209e-01:  30%|███       | 12/40 [00:04<00:09,  2.86it/s]Epoch 14 done. Recent losses: 6.519e-01 --> 5.868e-01 --> 5.464e-01 --> 5.322e-01 --> 5.209e-01:  32%|███▎      | 13/40 [00:04<00:09,  2.85it/s]Epoch 15 done. Recent losses: 5.868e-01 --> 5.464e-01 --> 5.322e-01 --> 5.209e-01 --> 5.103e-01:  32%|███▎      | 13/40 [00:05<00:09,  2.85it/s]Epoch 15 done. Recent losses: 5.868e-01 --> 5.464e-01 --> 5.322e-01 --> 5.209e-01 --> 5.103e-01:  35%|███▌      | 14/40 [00:05<00:09,  2.85it/s]Epoch 16 done. Recent losses: 5.464e-01 --> 5.322e-01 --> 5.209e-01 --> 5.103e-01 --> 5.019e-01:  35%|███▌      | 14/40 [00:05<00:09,  2.85it/s]Epoch 16 done. Recent losses: 5.464e-01 --> 5.322e-01 --> 5.209e-01 --> 5.103e-01 --> 5.019e-01:  38%|███▊      | 15/40 [00:05<00:08,  2.86it/s]Epoch 17 done. Recent losses: 5.322e-01 --> 5.209e-01 --> 5.103e-01 --> 5.019e-01 --> 4.976e-01:  38%|███▊      | 15/40 [00:05<00:08,  2.86it/s]Epoch 17 done. Recent losses: 5.322e-01 --> 5.209e-01 --> 5.103e-01 --> 5.019e-01 --> 4.976e-01:  40%|████      | 16/40 [00:05<00:08,  2.84it/s]Epoch 18 done. Recent losses: 5.209e-01 --> 5.103e-01 --> 5.019e-01 --> 4.976e-01 --> 4.916e-01:  40%|████      | 16/40 [00:06<00:08,  2.84it/s]Epoch 18 done. Recent losses: 5.209e-01 --> 5.103e-01 --> 5.019e-01 --> 4.976e-01 --> 4.916e-01:  42%|████▎     | 17/40 [00:06<00:08,  2.84it/s]Epoch 19 done. Recent losses: 5.103e-01 --> 5.019e-01 --> 4.976e-01 --> 4.916e-01 --> 4.903e-01:  42%|████▎     | 17/40 [00:06<00:08,  2.84it/s]Epoch 19 done. Recent losses: 5.103e-01 --> 5.019e-01 --> 4.976e-01 --> 4.916e-01 --> 4.903e-01:  45%|████▌     | 18/40 [00:06<00:07,  2.83it/s]Epoch 20 done. Recent losses: 5.019e-01 --> 4.976e-01 --> 4.916e-01 --> 4.903e-01 --> 4.905e-01:  45%|████▌     | 18/40 [00:06<00:07,  2.83it/s]Epoch 20 done. Recent losses: 5.019e-01 --> 4.976e-01 --> 4.916e-01 --> 4.903e-01 --> 4.905e-01:  48%|████▊     | 19/40 [00:06<00:07,  2.84it/s]Epoch 21 done. Recent losses: 4.976e-01 --> 4.916e-01 --> 4.903e-01 --> 4.905e-01 --> 4.901e-01:  48%|████▊     | 19/40 [00:07<00:07,  2.84it/s]Epoch 21 done. Recent losses: 4.976e-01 --> 4.916e-01 --> 4.903e-01 --> 4.905e-01 --> 4.901e-01:  50%|█████     | 20/40 [00:07<00:07,  2.84it/s]Epoch 22 done. Recent losses: 4.916e-01 --> 4.903e-01 --> 4.905e-01 --> 4.901e-01 --> 4.904e-01:  50%|█████     | 20/40 [00:07<00:07,  2.84it/s]Epoch 22 done. Recent losses: 4.916e-01 --> 4.903e-01 --> 4.905e-01 --> 4.901e-01 --> 4.904e-01:  52%|█████▎    | 21/40 [00:07<00:06,  2.85it/s]Epoch 23 done. Recent losses: 4.903e-01 --> 4.905e-01 --> 4.901e-01 --> 4.904e-01 --> 4.895e-01:  52%|█████▎    | 21/40 [00:08<00:06,  2.85it/s]Epoch 23 done. Recent losses: 4.903e-01 --> 4.905e-01 --> 4.901e-01 --> 4.904e-01 --> 4.895e-01:  55%|█████▌    | 22/40 [00:08<00:06,  2.85it/s]Epoch 24 done. Recent losses: 4.905e-01 --> 4.901e-01 --> 4.904e-01 --> 4.895e-01 --> 4.892e-01:  55%|█████▌    | 22/40 [00:08<00:06,  2.85it/s]Epoch 24 done. Recent losses: 4.905e-01 --> 4.901e-01 --> 4.904e-01 --> 4.895e-01 --> 4.892e-01:  57%|█████▊    | 23/40 [00:08<00:05,  2.85it/s]Epoch 25 done. Recent losses: 4.901e-01 --> 4.904e-01 --> 4.895e-01 --> 4.892e-01 --> 4.895e-01:  57%|█████▊    | 23/40 [00:08<00:05,  2.85it/s]Epoch 25 done. Recent losses: 4.901e-01 --> 4.904e-01 --> 4.895e-01 --> 4.892e-01 --> 4.895e-01:  60%|██████    | 24/40 [00:08<00:05,  2.84it/s]Epoch 26 done. Recent losses: 4.904e-01 --> 4.895e-01 --> 4.892e-01 --> 4.895e-01 --> 4.896e-01:  60%|██████    | 24/40 [00:09<00:05,  2.84it/s]Epoch 26 done. Recent losses: 4.904e-01 --> 4.895e-01 --> 4.892e-01 --> 4.895e-01 --> 4.896e-01:  62%|██████▎   | 25/40 [00:09<00:05,  2.84it/s]Epoch 27 done. Recent losses: 4.895e-01 --> 4.892e-01 --> 4.895e-01 --> 4.896e-01 --> 4.884e-01:  62%|██████▎   | 25/40 [00:09<00:05,  2.84it/s]Epoch 27 done. Recent losses: 4.895e-01 --> 4.892e-01 --> 4.895e-01 --> 4.896e-01 --> 4.884e-01:  65%|██████▌   | 26/40 [00:09<00:04,  2.84it/s]Epoch 28 done. Recent losses: 4.892e-01 --> 4.895e-01 --> 4.896e-01 --> 4.884e-01 --> 4.861e-01:  65%|██████▌   | 26/40 [00:09<00:04,  2.84it/s]Epoch 28 done. Recent losses: 4.892e-01 --> 4.895e-01 --> 4.896e-01 --> 4.884e-01 --> 4.861e-01:  68%|██████▊   | 27/40 [00:09<00:04,  2.83it/s]Epoch 29 done. Recent losses: 4.895e-01 --> 4.896e-01 --> 4.884e-01 --> 4.861e-01 --> 4.874e-01:  68%|██████▊   | 27/40 [00:10<00:04,  2.83it/s]Epoch 29 done. Recent losses: 4.895e-01 --> 4.896e-01 --> 4.884e-01 --> 4.861e-01 --> 4.874e-01:  70%|███████   | 28/40 [00:10<00:04,  2.83it/s]Epoch 30 done. Recent losses: 4.896e-01 --> 4.884e-01 --> 4.861e-01 --> 4.874e-01 --> 4.870e-01:  70%|███████   | 28/40 [00:10<00:04,  2.83it/s]Epoch 30 done. Recent losses: 4.896e-01 --> 4.884e-01 --> 4.861e-01 --> 4.874e-01 --> 4.870e-01:  72%|███████▎  | 29/40 [00:10<00:03,  2.83it/s]Epoch 31 done. Recent losses: 4.884e-01 --> 4.861e-01 --> 4.874e-01 --> 4.870e-01 --> 4.873e-01:  72%|███████▎  | 29/40 [00:10<00:03,  2.83it/s]Epoch 31 done. Recent losses: 4.884e-01 --> 4.861e-01 --> 4.874e-01 --> 4.870e-01 --> 4.873e-01:  75%|███████▌  | 30/40 [00:10<00:03,  2.83it/s]Epoch 32 done. Recent losses: 4.861e-01 --> 4.874e-01 --> 4.870e-01 --> 4.873e-01 --> 4.881e-01:  75%|███████▌  | 30/40 [00:11<00:03,  2.83it/s]Epoch 32 done. Recent losses: 4.861e-01 --> 4.874e-01 --> 4.870e-01 --> 4.873e-01 --> 4.881e-01:  78%|███████▊  | 31/40 [00:11<00:03,  2.83it/s]Epoch 33 done. Recent losses: 4.874e-01 --> 4.870e-01 --> 4.873e-01 --> 4.881e-01 --> 4.878e-01:  78%|███████▊  | 31/40 [00:11<00:03,  2.83it/s]Epoch 33 done. Recent losses: 4.874e-01 --> 4.870e-01 --> 4.873e-01 --> 4.881e-01 --> 4.878e-01:  80%|████████  | 32/40 [00:11<00:02,  2.83it/s]Epoch 34 done. Recent losses: 4.870e-01 --> 4.873e-01 --> 4.881e-01 --> 4.878e-01 --> 4.884e-01:  80%|████████  | 32/40 [00:11<00:02,  2.83it/s]Epoch 34 done. Recent losses: 4.870e-01 --> 4.873e-01 --> 4.881e-01 --> 4.878e-01 --> 4.884e-01:  82%|████████▎ | 33/40 [00:11<00:02,  2.83it/s]Epoch 35 done. Recent losses: 4.873e-01 --> 4.881e-01 --> 4.878e-01 --> 4.884e-01 --> 4.882e-01:  82%|████████▎ | 33/40 [00:12<00:02,  2.83it/s]Epoch 35 done. Recent losses: 4.873e-01 --> 4.881e-01 --> 4.878e-01 --> 4.884e-01 --> 4.882e-01:  85%|████████▌ | 34/40 [00:12<00:02,  2.81it/s]Epoch 36 done. Recent losses: 4.881e-01 --> 4.878e-01 --> 4.884e-01 --> 4.882e-01 --> 4.886e-01:  85%|████████▌ | 34/40 [00:12<00:02,  2.81it/s]Epoch 36 done. Recent losses: 4.881e-01 --> 4.878e-01 --> 4.884e-01 --> 4.882e-01 --> 4.886e-01:  88%|████████▊ | 35/40 [00:12<00:01,  2.75it/s]Epoch 37 done. Recent losses: 4.878e-01 --> 4.884e-01 --> 4.882e-01 --> 4.886e-01 --> 4.882e-01:  88%|████████▊ | 35/40 [00:13<00:01,  2.75it/s]Epoch 37 done. Recent losses: 4.878e-01 --> 4.884e-01 --> 4.882e-01 --> 4.886e-01 --> 4.882e-01:  90%|█████████ | 36/40 [00:13<00:01,  2.74it/s]Epoch 38 done. Recent losses: 4.884e-01 --> 4.882e-01 --> 4.886e-01 --> 4.882e-01 --> 4.882e-01:  90%|█████████ | 36/40 [00:13<00:01,  2.74it/s]Epoch 38 done. Recent losses: 4.884e-01 --> 4.882e-01 --> 4.886e-01 --> 4.882e-01 --> 4.882e-01:  92%|█████████▎| 37/40 [00:13<00:01,  2.74it/s]Epoch 39 done. Recent losses: 4.882e-01 --> 4.886e-01 --> 4.882e-01 --> 4.882e-01 --> 4.873e-01:  92%|█████████▎| 37/40 [00:13<00:01,  2.74it/s]Epoch 39 done. Recent losses: 4.882e-01 --> 4.886e-01 --> 4.882e-01 --> 4.882e-01 --> 4.873e-01:  95%|█████████▌| 38/40 [00:13<00:00,  2.77it/s]Epoch 40 done. Recent losses: 4.886e-01 --> 4.882e-01 --> 4.882e-01 --> 4.873e-01 --> 4.880e-01:  95%|█████████▌| 38/40 [00:14<00:00,  2.77it/s]Epoch 40 done. Recent losses: 4.886e-01 --> 4.882e-01 --> 4.882e-01 --> 4.873e-01 --> 4.880e-01:  98%|█████████▊| 39/40 [00:14<00:00,  2.77it/s]Epoch 41 done. Recent losses: 4.882e-01 --> 4.882e-01 --> 4.873e-01 --> 4.880e-01 --> 4.881e-01:  98%|█████████▊| 39/40 [00:14<00:00,  2.77it/s]Epoch 41 done. Recent losses: 4.882e-01 --> 4.882e-01 --> 4.873e-01 --> 4.880e-01 --> 4.881e-01: 100%|██████████| 40/40 [00:14<00:00,  2.78it/s]Epoch 41 done. Recent losses: 4.882e-01 --> 4.882e-01 --> 4.873e-01 --> 4.880e-01 --> 4.881e-01: 100%|██████████| 40/40 [00:14<00:00,  2.77it/s]
+INFO:mira.topic_model.base:Moving model to device: cpu
+Predicting latent vars:   0%|          | 0/2 [00:00<?, ?it/s]Predicting latent vars: 100%|██████████| 2/2 [00:00<00:00, 13.25it/s]Predicting latent vars: 100%|██████████| 2/2 [00:00<00:00, 13.23it/s]
+INFO:mira.adata_interface.topic_model:Added key to obsm: X_topic_compositions
+INFO:mira.adata_interface.topic_model:Added cols: topic_0, topic_1, topic_2, topic_3, topic_4
+INFO:mira.adata_interface.topic_model:Fetching key X_topic_compositions from obsm
+INFO:mira.adata_interface.core:Added key to obsm: X_umap_features
+OMP: Info #271: omp_set_nested routine deprecated, please use omp_set_max_active_levels instead.
+INFO:mira.pseudotime.pseudotime:Found 1 components of KNN graph.
+INFO:mira.adata_interface.core:Added cols to obs: mira_connected_components
+INFO:mira.pseudotime.pseudotime:Calculating inter-cell distances ...
+INFO:root:Using 1 core. Speed this up by allocating more n_jobs.
+Calculating pseudotime:   0%|          | 0/24850 [00:00<?, ?it/s]Calculating pseudotime:   4%|▍         | 994/24850 [00:00<00:00, 39758.71it/s]
+INFO:mira.pseudotime.pseudotime:Calculating transport map ...
+INFO:mira.adata_interface.pseudotime:Added key to obs: mira_pseudotime
+INFO:mira.adata_interface.pseudotime:Added key to obsp: transport_map
+INFO:mira.adata_interface.pseudotime:Added key to uns: start_cell
+INFO:mira.pseudotime.pseudotime:Simulating random walks ...
+INFO:mira.adata_interface.pseudotime:Added key to obsm: branch_probs
+INFO:mira.adata_interface.pseudotime:Added key to uns: lineage_names
+INFO:mira.adata_interface.core:Added cols to obs: B_prob
+INFO:mira.adata_interface.core:Added cols to obs: C_prob
+INFO:mira.adata_interface.core:Added cols to obs: differentiation_entropy
+INFO:mira.adata_interface.pseudotime:Added key to obs: tree_states
+INFO:mira.adata_interface.pseudotime:Added key to uns: tree_state_names
+INFO:mira.adata_interface.pseudotime:Added key to uns: connectivities_tree
+INFO:mira.adata_interface.pseudotime:Added key to obs: tree_states
+INFO:mira.adata_interface.pseudotime:Added key to uns: tree_state_names
+INFO:mira.adata_interface.pseudotime:Added key to uns: connectivities_tree
+INFO:mira.adata_interface.pseudotime:Added key to obs: tree_states
+INFO:mira.adata_interface.pseudotime:Added key to uns: tree_state_names
+INFO:mira.adata_interface.pseudotime:Added key to uns: connectivities_tree
+INFO:mira.adata_interface.pseudotime:Added key to obs: tree_states
+INFO:mira.adata_interface.pseudotime:Added key to uns: tree_state_names
+INFO:mira.adata_interface.pseudotime:Added key to uns: connectivities_tree
+INFO:mira.adata_interface.pseudotime:Added key to obs: tree_states
+INFO:mira.adata_interface.pseudotime:Added key to uns: tree_state_names
+INFO:mira.adata_interface.pseudotime:Added key to uns: connectivities_tree
+INFO:mira.adata_interface.pseudotime:Added key to obs: tree_states
+INFO:mira.adata_interface.pseudotime:Added key to uns: tree_state_names
+INFO:mira.adata_interface.pseudotime:Added key to uns: connectivities_tree
+INFO:mira.adata_interface.pseudotime:Added key to obs: tree_states
+INFO:mira.adata_interface.pseudotime:Added key to uns: tree_state_names
+INFO:mira.adata_interface.pseudotime:Added key to uns: connectivities_tree
+INFO:mira.adata_interface.pseudotime:Added key to obs: tree_states
+INFO:mira.adata_interface.pseudotime:Added key to uns: tree_state_names
+INFO:mira.adata_interface.pseudotime:Added key to uns: connectivities_tree
+INFO:mira.adata_interface.pseudotime:Added key to obs: tree_states
+INFO:mira.adata_interface.pseudotime:Added key to uns: tree_state_names
+INFO:mira.adata_interface.pseudotime:Added key to uns: connectivities_tree
+INFO:mira.adata_interface.pseudotime:Added key to obs: tree_states
+INFO:mira.adata_interface.pseudotime:Added key to uns: tree_state_names
+INFO:mira.adata_interface.pseudotime:Added key to uns: connectivities_tree
+INFO:mira.adata_interface.pseudotime:Added key to obs: tree_states
+INFO:mira.adata_interface.pseudotime:Added key to uns: tree_state_names
+INFO:mira.adata_interface.pseudotime:Added key to uns: connectivities_tree
+INFO:mira.adata_interface.pseudotime:Added key to obs: tree_states
+INFO:mira.adata_interface.pseudotime:Added key to uns: tree_state_names
+INFO:mira.adata_interface.pseudotime:Added key to uns: connectivities_tree
+INFO:mira.adata_interface.pseudotime:Added key to obs: tree_states
+INFO:mira.adata_interface.pseudotime:Added key to uns: tree_state_names
+INFO:mira.adata_interface.pseudotime:Added key to uns: connectivities_tree
+INFO:mira.adata_interface.pseudotime:Added key to obs: tree_states
+INFO:mira.adata_interface.pseudotime:Added key to uns: tree_state_names
+INFO:mira.adata_interface.pseudotime:Added key to uns: connectivities_tree
+INFO:mira.adata_interface.pseudotime:Added key to obs: tree_states
+INFO:mira.adata_interface.pseudotime:Added key to uns: tree_state_names
+INFO:mira.adata_interface.pseudotime:Added key to uns: connectivities_tree
+INFO:mira.adata_interface.pseudotime:Added key to obs: tree_states
+INFO:mira.adata_interface.pseudotime:Added key to uns: tree_state_names
+INFO:mira.adata_interface.pseudotime:Added key to uns: connectivities_tree
+INFO:mira.adata_interface.pseudotime:Added key to obs: tree_states
+INFO:mira.adata_interface.pseudotime:Added key to uns: tree_state_names
+INFO:mira.adata_interface.pseudotime:Added key to uns: connectivities_tree
+INFO:mira.adata_interface.pseudotime:Added key to obs: tree_states
+INFO:mira.adata_interface.pseudotime:Added key to uns: tree_state_names
+INFO:mira.adata_interface.pseudotime:Added key to uns: connectivities_tree
+INFO:mira.adata_interface.pseudotime:Added key to obs: tree_states
+INFO:mira.adata_interface.pseudotime:Added key to uns: tree_state_names
+INFO:mira.adata_interface.pseudotime:Added key to uns: connectivities_tree
+INFO:mira.adata_interface.pseudotime:Added key to obs: tree_states
+INFO:mira.adata_interface.pseudotime:Added key to uns: tree_state_names
+INFO:mira.adata_interface.pseudotime:Added key to uns: connectivities_tree
+INFO:mira.adata_interface.pseudotime:Added key to obs: tree_states
+INFO:mira.adata_interface.pseudotime:Added key to uns: tree_state_names
+INFO:mira.adata_interface.pseudotime:Added key to uns: connectivities_tree
+INFO:mira.adata_interface.pseudotime:Added key to obs: tree_states
+INFO:mira.adata_interface.pseudotime:Added key to uns: tree_state_names
+INFO:mira.adata_interface.pseudotime:Added key to uns: connectivities_tree
+INFO:mira.adata_interface.pseudotime:Added key to obs: tree_states
+INFO:mira.adata_interface.pseudotime:Added key to uns: tree_state_names
+INFO:mira.adata_interface.pseudotime:Added key to uns: connectivities_tree
+INFO:mira.adata_interface.pseudotime:Added key to obs: tree_states
+INFO:mira.adata_interface.pseudotime:Added key to uns: tree_state_names
+INFO:mira.adata_interface.pseudotime:Added key to uns: connectivities_tree
+INFO:mira.adata_interface.pseudotime:Added key to obs: tree_states
+INFO:mira.adata_interface.pseudotime:Added key to uns: tree_state_names
+INFO:mira.adata_interface.pseudotime:Added key to uns: connectivities_tree
+INFO:mira.adata_interface.pseudotime:Added key to obs: tree_states
+INFO:mira.adata_interface.pseudotime:Added key to uns: tree_state_names
+INFO:mira.adata_interface.pseudotime:Added key to uns: connectivities_tree
+INFO:mira.adata_interface.pseudotime:Added key to obs: tree_states
+INFO:mira.adata_interface.pseudotime:Added key to uns: tree_state_names
+INFO:mira.adata_interface.pseudotime:Added key to uns: connectivities_tree
+INFO:mira.adata_interface.pseudotime:Added key to obs: tree_states
+INFO:mira.adata_interface.pseudotime:Added key to uns: tree_state_names
+INFO:mira.adata_interface.pseudotime:Added key to uns: connectivities_tree
+INFO:mira.adata_interface.pseudotime:Added key to obs: tree_states
+INFO:mira.adata_interface.pseudotime:Added key to uns: tree_state_names
+INFO:mira.adata_interface.pseudotime:Added key to uns: connectivities_tree
+INFO:mira.adata_interface.pseudotime:Added key to obs: tree_states
+INFO:mira.adata_interface.pseudotime:Added key to uns: tree_state_names
+INFO:mira.adata_interface.pseudotime:Added key to uns: connectivities_tree
+INFO:mira.adata_interface.pseudotime:Added key to obs: tree_states
+INFO:mira.adata_interface.pseudotime:Added key to uns: tree_state_names
+INFO:mira.adata_interface.pseudotime:Added key to uns: connectivities_tree
+INFO:mira.adata_interface.pseudotime:Added key to obs: tree_states
+INFO:mira.adata_interface.pseudotime:Added key to uns: tree_state_names
+INFO:mira.adata_interface.pseudotime:Added key to uns: connectivities_tree
+INFO:mira.adata_interface.pseudotime:Added key to obs: tree_states
+INFO:mira.adata_interface.pseudotime:Added key to uns: tree_state_names
+INFO:mira.adata_interface.pseudotime:Added key to uns: connectivities_tree
+INFO:mira.adata_interface.pseudotime:Added key to obs: tree_states
+INFO:mira.adata_interface.pseudotime:Added key to uns: tree_state_names
+INFO:mira.adata_interface.pseudotime:Added key to uns: connectivities_tree
+INFO:mira.adata_interface.pseudotime:Added key to obs: tree_states
+INFO:mira.adata_interface.pseudotime:Added key to uns: tree_state_names
+INFO:mira.adata_interface.pseudotime:Added key to uns: connectivities_tree
+INFO:mira.adata_interface.pseudotime:Added key to obs: tree_states
+INFO:mira.adata_interface.pseudotime:Added key to uns: tree_state_names
+INFO:mira.adata_interface.pseudotime:Added key to uns: connectivities_tree
+INFO:mira.adata_interface.pseudotime:Added key to obs: tree_states
+INFO:mira.adata_interface.pseudotime:Added key to uns: tree_state_names
+INFO:mira.adata_interface.pseudotime:Added key to uns: connectivities_tree
+INFO:mira.adata_interface.pseudotime:Added key to obs: tree_states
+INFO:mira.adata_interface.pseudotime:Added key to uns: tree_state_names
+INFO:mira.adata_interface.pseudotime:Added key to uns: connectivities_tree
+/Users/alynch/opt/miniconda3/envs/mirarep/lib/python3.7/site-packages/anndata/_core/anndata.py:1228: FutureWarning: The `inplace` parameter in pandas.Categorical.reorder_categories is deprecated and will be removed in a future version. Reordering categories will always return a new Categorical object.
+  c.reorder_categories(natsorted(c.categories), inplace=True)
+... storing 'mira_connected_components' as categorical
+/Users/alynch/opt/miniconda3/envs/mirarep/lib/python3.7/site-packages/anndata/_core/anndata.py:1228: FutureWarning: The `inplace` parameter in pandas.Categorical.reorder_categories is deprecated and will be removed in a future version. Reordering categories will always return a new Categorical object.
+  c.reorder_categories(natsorted(c.categories), inplace=True)
+... storing 'tree_states' as categorical

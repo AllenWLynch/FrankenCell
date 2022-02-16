@@ -1,3 +1,4 @@
+from os import scandir
 import anndata
 from scipy.stats import multivariate_hypergeom, lognorm
 from tqdm import tqdm
@@ -71,7 +72,13 @@ class CRP:
     
 def sigmoid(x):
     return 1/(1+np.exp(-x))
-    
+
+def get_idx_from_path(path):
+    idx = [1]
+    for p in path[1:]:
+        idx.append(2*idx[-1] + p)
+        
+    return idx
     
 def generate_branching_process(
     branch_times,
@@ -98,7 +105,8 @@ def generate_branching_process(
         path = crp.new_customer()
                         
         level = np.argmin(pseudotime > branch_times) - 1
-        progress = (pseudotime - branch_times[level])/(branch_times[level+1] - branch_times[level])
+        branch_len = branch_times[level+1] - branch_times[level]
+        progress = (pseudotime - branch_times[level])/(branch_len)
         
         if sigmoid_approach:
             x = sigmoid_aggression*(progress - 0.5)
@@ -108,19 +116,14 @@ def generate_branching_process(
                                  [1-progress, progress],
                                 np.zeros(len(path) - level - 1)])
         
-        cells.append((pseudotime, path, mixing))
+        state = get_idx_from_path(path[:level+1])[-1] - 1
+
+        cells.append((pseudotime, path, mixing, state,
+            progress * branch_len + branch_times[level]))
         
     return list(
         map(np.array, list(zip(*cells)))
     )
-
-
-def get_idx_from_path(path):
-    idx = [1]
-    for p in path[1:]:
-        idx.append(2*idx[-1] + p)
-        
-    return idx
 
 
 def prepare_adata(adata, cell_states, 
@@ -190,8 +193,9 @@ def sample_proportions(*,
             break
 
         else:
-            rna_read_depth*=np.random.beta(1, 0.3)
-            atac_read_depth*=np.random.beta(1, 0.3)
+            
+            rna_read_depth*=0.9
+            atac_read_depth*=0.9
     
     return frankencell
 
@@ -221,6 +225,7 @@ def make_franken_cells(
     rna_counts_layer = None,
     atac_counts_layer = None,
     generate_cells = True,
+    read_depth_max_sd = [3,3],
     n_jobs = 1,*,
     branch_times,
     state_compositions,
@@ -244,7 +249,7 @@ def make_franken_cells(
 
     np.random.seed(seed=seed)
     
-    pseudotime, paths, transition_mixing = generate_branching_process(
+    pseudotime, paths, transition_mixing, state, real_time = generate_branching_process(
         branch_times,
         gamma = gamma, max_depth = max_depth, max_width = max_width,
         ptime_alpha= ptime_alpha, ptime_beta=ptime_beta,
@@ -268,8 +273,22 @@ def make_franken_cells(
     
     else:
 
-        rna_read_depth = lognorm(*rna_read_depth_distribution).rvs(n_cells)
-        atac_read_depth = lognorm(*atac_read_depth_distribution).rvs(n_cells)
+        def bound_read_depth(std, loc, exp_mean, max_std, lower = True):
+            return np.exp(
+                np.log(exp_mean) + (-1 if lower else 1) * std * max_std
+            )
+
+        min_rna_counts, max_rna_counts = bound_read_depth(*rna_read_depth_distribution, read_depth_max_sd[0]), bound_read_depth(*rna_read_depth_distribution, read_depth_max_sd[1], lower = False)
+
+        min_atac_counts, max_atac_counts = bound_read_depth(*atac_read_depth_distribution, read_depth_max_sd[0]), bound_read_depth(*atac_read_depth_distribution, read_depth_max_sd[1], lower = False)
+
+        rna_read_depth = np.clip(
+            lognorm(*rna_read_depth_distribution).rvs(n_cells), 
+            min_rna_counts, max_rna_counts)
+
+        atac_read_depth = np.clip(
+            lognorm(*atac_read_depth_distribution).rvs(n_cells),
+            min_atac_counts, max_atac_counts)
 
         state_counts_rna = prepare_adata(rna_adata, pure_states, 
                   cell_state_col = cell_state_col, counts_layer = rna_counts_layer)
@@ -301,8 +320,9 @@ def make_franken_cells(
         franken_rna, franken_atac = map(sparse.vstack, list(zip(*frankencells)))
         
         obs_df = pd.DataFrame(
-            [pseudotime, *mixing_weights.T],
-            index = ['pseudotime', *['mix_weight_' + str(i) for i in range(3)]],
+            [pseudotime, state, real_time, *mixing_weights.T],
+            index = ['pseudotime', 'state','real_time', 
+                *['mix_weight_' + str(i) for i in range(3)]],
             columns = np.arange(n_cells),
         ).T
         

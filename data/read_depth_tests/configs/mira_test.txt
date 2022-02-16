@@ -1,0 +1,16 @@
+--tuning-iters
+32
+--batch-sizes
+32
+64
+128
+--topic-range
+3
+5
+--dropout-range
+0.001
+0.1
+--cv
+5
+--train-size
+0.8
