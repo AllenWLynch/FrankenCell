@@ -163,8 +163,8 @@ def main(*,
 
     rna_model_path = out_prefix + '_best_rna_model.pth'
     if not os.path.exists(rna_model_path) or retrain:
-        #rna_model = tune_model(rna_frankendata, rna_model, 'rna', **training_args)
-        rna_model.fit(rna_frankendata)
+        rna_model = tune_model(rna_frankendata, rna_model, 'rna', **training_args)
+        #rna_model.fit(rna_frankendata)
     else:
         rna_model = mira.topics.ExpressionTopicModel.load(rna_model_path)
 
