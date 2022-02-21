@@ -7,7 +7,7 @@ import argparse
 import os
 import pandas as pd
 
-def preprocess_rna_data(rna_frankendata, min_cells = 20):
+def preprocess_rna_data(rna_frankendata, min_cells = 30):
 
     rna_frankendata.layers['counts'] = rna_frankendata.X.copy()
     
@@ -17,7 +17,7 @@ def preprocess_rna_data(rna_frankendata, min_cells = 20):
     sc.pp.highly_variable_genes(rna_frankendata)
 
 
-def preprocess_atac_data(atac_frankendata, min_cells = 10):
+def preprocess_atac_data(atac_frankendata, min_cells = 30):
     sc.pp.filter_genes(atac_frankendata, min_cells = min_cells)
 
 def init_rna_model(seed):
@@ -136,8 +136,8 @@ def main(*,
     cv = 5,
     seed = 2556,
     train_size=0.8,
-    min_cells_rna = 20,
-    min_cells_atac = 20,
+    min_cells_rna = 30,
+    min_cells_atac = 30,
     embedding_key = 'X_joint_umap_features',
     retrain = True,
 ):
@@ -169,7 +169,7 @@ def main(*,
         rna_model = mira.topics.ExpressionTopicModel.load(rna_model_path)
 
     rna_model.predict(rna_frankendata)
-    rna_model.get_umap_features(rna_frankendata, box_cox = 'log')
+    rna_model.get_umap_features(rna_frankendata, box_cox = 0.5)
     
     atac_model_path = out_prefix + '_best_atac_model.pth'
     if not os.path.exists(atac_model_path) or retrain:
@@ -178,7 +178,7 @@ def main(*,
         atac_model = mira.topics.AccessibilityTopicModel(atac_model_path)
         
     atac_model.predict(atac_frankendata)
-    atac_model.get_umap_features(atac_frankendata, box_cox = 'log')
+    atac_model.get_umap_features(atac_frankendata, box_cox = 0.5)
 
     rna_frankendata, atac_frankendata = mira.utils.make_joint_representation(
         rna_frankendata, atac_frankendata
