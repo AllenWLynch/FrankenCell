@@ -171,7 +171,7 @@ def main(*,
         rna_model = mira.topics.ExpressionTopicModel.load(rna_model_path)
 
     rna_model.predict(rna_frankendata)
-    rna_model.get_umap_features(rna_frankendata, box_cox = 'log')
+    rna_model.get_umap_features(rna_frankendata, box_cox = 0.5)
     
     atac_model_path = out_prefix + '_best_atac_model.pth'
     if not os.path.exists(atac_model_path) or retrain:
@@ -180,7 +180,7 @@ def main(*,
         atac_model = mira.topics.AccessibilityTopicModel(atac_model_path)
         
     atac_model.predict(atac_frankendata)
-    atac_model.get_umap_features(atac_frankendata, box_cox = 'log')
+    atac_model.get_umap_features(atac_frankendata, box_cox = 0.5)
 
     rna_frankendata, atac_frankendata = mira.utils.make_joint_representation(
         rna_frankendata, atac_frankendata

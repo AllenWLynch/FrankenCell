@@ -1,5 +1,5 @@
 --tuning-iters
-32
+16
 --batch-sizes
 32
 64
