@@ -69,7 +69,7 @@ def get_slingshot_data(rna_frankendata, embedding, num_components, resolution):
     return slingshot_data
 
 
-def run_slingshot(slingdata, out_prefix, resolution):
+def run_slingshot(slingdata, out_prefix, resolution, Rscript_path):
 
     input_file = out_prefix + '_slingdata_resolution_{}.json'.format(resolution)
     output_file = out_prefix + '_slingresults_resolution_{}.csv'.format(resolution)
@@ -77,9 +77,9 @@ def run_slingshot(slingdata, out_prefix, resolution):
     with open(input_file, 'w') as f:
         json.dump(slingdata, f)
 
-    rscript_path = os.path.join(os.path.split(os.path.dirname(__file__))[0], 'test_algorithms', 'slingshot.R')
+    script = os.path.join(os.path.split(os.path.dirname(__file__))[0], 'test_algorithms', 'slingshot.R')
     subprocess.run(
-        [rscript_path, input_file, output_file],check=True
+        [Rscript_path, script, input_file, output_file],check=True
     )
 
     results = pd.read_csv(output_file)
@@ -92,6 +92,7 @@ def main(
         data, 
         resolutions,
         out_prefix,
+        Rscript_path,
         style= 'pca',
     ):
 
@@ -120,7 +121,7 @@ def main(
         print('Running test with resolution: ', resolution)
         results = run_slingshot(
             get_slingshot_data(rna_frankendata, embedding, num_components, resolution), 
-            out_prefix, resolution
+            out_prefix, resolution, Rscript_path
         )
 
         rna_frankendata.obsm['slingresults_' + str(resolution)] = results.values[:,1:]
@@ -135,6 +136,7 @@ def get_parser():
     parser.add_argument('--out-prefix', '-o', type = str, required=True)
     parser.add_argument('--style','-y', type = str, default = 'pca')
     parser.add_argument('--resolutions', '-r', type= float, nargs='+')
+    parser.add_argument('--Rscript-path','-R', type = str, required=True)
 
     return parser
 
@@ -147,7 +149,8 @@ if __name__ == "__main__":
         data = args.data,
         out_prefix = args.out_prefix,
         style = args.style,
-        resolutions = args.resolutions
+        resolutions = args.resolutions,
+        Rscript_path = args.Rscript_path
     )
 
     out_data.write_h5ad(args.out_prefix + '_results_adata.h5ad')
