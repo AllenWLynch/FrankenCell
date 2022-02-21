@@ -1,12 +1,12 @@
 --tuning-iters
-16
+12
 --batch-sizes
 32
 64
 128
 --topic-range
 3
-5
+4
 --dropout-range
 0.001
 0.1

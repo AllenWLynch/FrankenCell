@@ -1,4 +1,3 @@
-from configparser import MAX_INTERPOLATION_DEPTH
 import anndata
 import scanpy as sc
 import mira
@@ -136,7 +135,6 @@ def main(*,
     topic_range = [3,8],
     dropout_range = [0.001, 0.1],
     cv = 5,
-    seed = 2556,
     train_size=0.8,
     min_cells_rna = 30,
     min_cells_atac = 30,
@@ -145,6 +143,7 @@ def main(*,
 ):
 
     frankendata = anndata.read_h5ad(data)
+    seed = int(frankendata.uns['generation_params']['seed'])
 
     np.random.seed(seed)
     random_order = np.random.permutation(len(frankendata))
@@ -209,7 +208,6 @@ def get_parser():
     parser.add_argument('--topic-range','-t', type = int, nargs=2, default=[3,5])
     parser.add_argument('--dropout-range','-do', type = float, nargs = 2, default=[0.001, 0.1])
     parser.add_argument('--cv','-cv', type = int, default=5)
-    parser.add_argument('--seed', '-s', default=None, type = int)
     parser.add_argument('--train-size', default=0.8, type = float)
 
     return parser
@@ -219,8 +217,6 @@ if __name__ == "__main__":
     parser = get_parser()
     args = parser.parse_args()
 
-    print(args)
-
     out_data = main(
         data = args.data,
         out_prefix = args.out_prefix,
@@ -229,7 +225,6 @@ if __name__ == "__main__":
         topic_range = args.topic_range,
         dropout_range = args.dropout_range,
         cv = args.cv,
-        seed = args.seed,
         train_size= args.train_size,
         embedding_key= args.embedding_key,
         retrain=not args.skip_training,

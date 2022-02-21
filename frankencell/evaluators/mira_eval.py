@@ -12,6 +12,19 @@ def make_label_array(values):
     labels[np.arange(len(values)), values] = 1
     return labels
 
+
+def jsonize_generation_params(params):
+
+    def norm(v):
+    
+        if isinstance(v, (np.ndarray, list)):
+            return np.array(v).tolist()
+        elif isinstance(v, np.int64):
+            return int(v)
+
+    return {k : norm(v) for k, v in params.items()}
+
+
 def get_mutual_information(x,y):
 
     x_marg = x.mean(0,keepdims = True)
@@ -24,12 +37,7 @@ def get_mutual_information(x,y):
 
     return mutual_information
 
-def main(*,data, results_file):
-
-    data = anndata.read_h5ad(data)
-
-    results = pd.read_csv(results_file, sep = '\t').set_index('Unnamed: 0')
-    results.index = results.index.astype(str)
+def main(data, results):
 
     data.obs = data.obs.join(results, how = 'left', rsuffix='_observed', lsuffix='_expected')
 
@@ -66,7 +74,7 @@ def main(*,data, results_file):
         rna_mutual_information = rna_mutual_information,
         atac_mutual_information = atac_mutual_information,
         both_mutual_information = both_mutual_information,
-        generation_params = data.uns['generation_params'],
+        generation_params = jsonize_generation_params(data.uns['generation_params']),
     )
 
 
@@ -83,7 +91,11 @@ if __name__ == "__main__":
     parser = get_parser()
     args = parser.parse_args()
 
-    results = main(data = args.data, results_file=args.test_results)
+    data = anndata.read_h5ad(args.data)
+    results = pd.read_csv(args.test_results, sep = '\t').set_index('Unnamed: 0')
+    results.index = results.index.astype(str)
+
+    results = main(data, results)
 
     with open(args.out_prefix + '_summary.json', 'w') as f:
         print(json.dumps(results), file = f)

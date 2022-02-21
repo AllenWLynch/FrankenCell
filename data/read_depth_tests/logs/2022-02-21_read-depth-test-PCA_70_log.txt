@@ -1,0 +1,63 @@
+OMP: Info #271: omp_set_nested routine deprecated, please use omp_set_max_active_levels instead.
+Trying to set attribute `.obs` of view, copying.
+Loading required package: princurve
+Warning message:
+package ‘jsonlite’ was built under R version 4.0.5 
+Using full covariance matrix
+Loading required package: princurve
+Warning message:
+package ‘jsonlite’ was built under R version 4.0.5 
+Using full covariance matrix
+Loading required package: princurve
+Warning message:
+package ‘jsonlite’ was built under R version 4.0.5 
+Using full covariance matrix
+Loading required package: princurve
+Warning message:
+package ‘jsonlite’ was built under R version 4.0.5 
+Using full covariance matrix
+Loading required package: princurve
+Warning message:
+package ‘jsonlite’ was built under R version 4.0.5 
+Using full covariance matrix
+Loading required package: princurve
+Warning message:
+package ‘jsonlite’ was built under R version 4.0.5 
+Using full covariance matrix
+Loading required package: princurve
+Warning message:
+package ‘jsonlite’ was built under R version 4.0.5 
+Using full covariance matrix
+Loading required package: princurve
+Warning message:
+package ‘jsonlite’ was built under R version 4.0.5 
+Using full covariance matrix
+Loading required package: princurve
+Warning message:
+package ‘jsonlite’ was built under R version 4.0.5 
+Using full covariance matrix
+Loading required package: princurve
+Warning message:
+package ‘jsonlite’ was built under R version 4.0.5 
+Using full covariance matrix
+Loading required package: princurve
+Warning message:
+package ‘jsonlite’ was built under R version 4.0.5 
+Using full covariance matrix
+Loading required package: princurve
+Warning message:
+package ‘jsonlite’ was built under R version 4.0.5 
+Using full covariance matrix
+Running test with resolution:  0.1
+Running test with resolution:  0.15
+Running test with resolution:  0.2
+Running test with resolution:  0.25
+Running test with resolution:  0.3
+Running test with resolution:  0.35
+Running test with resolution:  0.4
+Running test with resolution:  0.5
+Running test with resolution:  0.6
+Running test with resolution:  0.7
+Running test with resolution:  0.8
+Running test with resolution:  1.0
+Success!
