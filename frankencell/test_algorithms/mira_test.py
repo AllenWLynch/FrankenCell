@@ -7,7 +7,7 @@ import argparse
 import os
 import pandas as pd
 
-def preprocess_rna_data(rna_frankendata, min_cells = 20):
+def preprocess_rna_data(rna_frankendata, min_cells = 30):
 
     rna_frankendata.layers['counts'] = rna_frankendata.X.copy()
     
@@ -17,7 +17,7 @@ def preprocess_rna_data(rna_frankendata, min_cells = 20):
     sc.pp.highly_variable_genes(rna_frankendata)
 
 
-def preprocess_atac_data(atac_frankendata, min_cells = 10):
+def preprocess_atac_data(atac_frankendata, min_cells = 30):
     sc.pp.filter_genes(atac_frankendata, min_cells = min_cells)
 
 def init_rna_model(seed):
@@ -29,8 +29,9 @@ def init_rna_model(seed):
         batch_size=64,
         seed = seed,
         encoder_dropout=0.015,
-        num_topics = 5,
+        num_topics = 4,
         kl_strategy='cyclic',
+        initial_pseudocounts=100,
     )
     rna_model.set_learning_rates(0.0011661489989520215, 0.113232393998922)
 
@@ -46,6 +47,7 @@ def init_atac_model(seed):
         encoder_dropout=0.07,
         num_topics = 4,
         kl_strategy='cyclic',
+        initial_pseudocounts=100,
     )
     atac_model.set_learning_rates(0.001, 0.1103771629085354)
     
@@ -136,8 +138,8 @@ def main(*,
     cv = 5,
     seed = 2556,
     train_size=0.8,
-    min_cells_rna = 20,
-    min_cells_atac = 20,
+    min_cells_rna = 30,
+    min_cells_atac = 30,
     embedding_key = 'X_joint_umap_features',
     retrain = True,
 ):

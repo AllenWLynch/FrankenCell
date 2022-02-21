@@ -65,7 +65,8 @@ def main(*,data, results_file):
         lineage_f1 = f1,
         rna_mutual_information = rna_mutual_information,
         atac_mutual_information = atac_mutual_information,
-        both_mutual_information = both_mutual_information
+        both_mutual_information = both_mutual_information,
+        generation_params = data.uns['generation_params'],
     )
 
 
