@@ -4,10 +4,10 @@ data/benchmark_rna.h5ad
 data/benchmark_atac.h5ad
 --rna-read-depth
 0.45
-200
+177.82794100389228
 --atac-read-depth
 0.35
-400
+316.22776601683796
 --sigmoid-aggression
 8
 --branch-times
