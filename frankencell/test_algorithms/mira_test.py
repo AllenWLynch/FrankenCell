@@ -30,7 +30,6 @@ def init_rna_model(seed):
         encoder_dropout=0.015,
         num_topics = 4,
         kl_strategy='cyclic',
-        initial_pseudocounts=100,
     )
     rna_model.set_learning_rates(0.0011661489989520215, 0.113232393998922)
 
@@ -46,7 +45,6 @@ def init_atac_model(seed):
         encoder_dropout=0.07,
         num_topics = 4,
         kl_strategy='cyclic',
-        initial_pseudocounts=100,
     )
     atac_model.set_learning_rates(0.001, 0.1103771629085354)
     

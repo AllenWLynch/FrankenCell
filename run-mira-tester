@@ -4,7 +4,7 @@ start=1
 end=70
 embedding=X_joint_umap_features
 test=read_depth_tests
-filename=2022-02-11_read-depth-test-MIRA_
+filename=2022-02-21_read-depth-test-MIRA_
 outprefix=data/$test/results/$filename
 args_file=data/$test/configs/mira_test.txt
 

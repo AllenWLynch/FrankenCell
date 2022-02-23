@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH --array=1-75
+#SBATCH --array=1-75%10
 #SBATCH --output=data/read_depth_tests/logs/generate_log_%A_%a.out
 #SBATCH --job-name=frankencells
 #SBATCH --ntasks=1

@@ -28,7 +28,7 @@ class TooManyLineages(ValueError):
     pass
 
 def get_pseudotime_concordance(data, slingtrial):
-    if slingtrial.shape[-1] > 2:
+    if slingtrial.shape[-1] != 2:
         raise TooManyLineages('Too many lineages')
         
     pseudotime = np.nanmean(slingtrial, axis = -1)
@@ -37,7 +37,7 @@ def get_pseudotime_concordance(data, slingtrial):
 
 
 def parse_states(slingtrial, flip = True):
-    if slingtrial.shape[-1] > 2:
+    if slingtrial.shape[-1] != 2:
         raise TooManyLineages('Too many lineages')
         
     state_0 = np.isfinite(slingtrial).all(-1)
@@ -52,7 +52,7 @@ def get_lineage_f1(data, slingtrial, flip = True):
     
     return f1_score(
         make_label_array(data.obs.state.values),
-        parse_states(slingtrial, flip=flip), average = 'micro'
+        parse_states(slingtrial, flip=flip), average = 'macro'
     )
 
 

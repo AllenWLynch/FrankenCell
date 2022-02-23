@@ -12,7 +12,7 @@ from sklearn.decomposition import TruncatedSVD
 from sklearn.preprocessing import StandardScaler
 
 def eigengap(eigvals):
-    return np.max([np.argmax(eigvals[:-1] - eigvals[1:]) + 1, 3])
+    return np.max([np.argmax(eigvals[:-1] - eigvals[1:]) + 1, 2])
 
 def preprocess_rna_data(rna_frankendata, min_cells = 30):
 
@@ -43,17 +43,19 @@ def run_lsi(atac_frankendata):
 
     features = TfidfTransformer().fit_transform(atac_frankendata.X)
     svd = TruncatedSVD(n_components=8)
-    dimreduced = svd.fit_transform(features)
+    dimreduced = svd.fit_transform(features)[:, 1:]
     
     atac_frankendata.obsm['X_lsi'] = StandardScaler().fit_transform(dimreduced)
     atac_frankendata.uns['svd'] = svd.singular_values_
 
-    return eigengap(svd.singular_values_)
+    return eigengap(svd.singular_values_[1:])
 
 
 def get_slingshot_data(rna_frankendata, embedding, num_components, resolution):
+    
+    rna_frankendata.obsm['slingshot_coords'] = rna_frankendata.obsm[embedding][:,:num_components]
 
-    sc.pp.neighbors(rna_frankendata, use_rep=embedding, n_pcs = num_components)
+    sc.pp.neighbors(rna_frankendata, use_rep='slingshot_coords')
     sc.tl.leiden(rna_frankendata, resolution=resolution)
     
     start_cluster = rna_frankendata.obs.iloc[rna_frankendata.obs.pseudotime.argmin()].leiden
@@ -69,7 +71,7 @@ def get_slingshot_data(rna_frankendata, embedding, num_components, resolution):
     return slingshot_data
 
 
-def run_slingshot(slingdata, out_prefix, resolution, Rscript_path):
+def run_slingshot(slingdata, out_prefix, resolution, Renv):
 
     input_file = out_prefix + '_slingdata_resolution_{}.json'.format(resolution)
     output_file = out_prefix + '_slingresults_resolution_{}.csv'.format(resolution)
@@ -79,7 +81,7 @@ def run_slingshot(slingdata, out_prefix, resolution, Rscript_path):
 
     script = os.path.join(os.path.split(os.path.dirname(__file__))[0], 'test_algorithms', 'slingshot.R')
     subprocess.run(
-        [Rscript_path, script, input_file, output_file],check=True
+        ['conda','run','-p',Renv,'Rscript',script, input_file, output_file], check=True
     )
 
     results = pd.read_csv(output_file)
@@ -92,7 +94,7 @@ def main(
         data, 
         resolutions,
         out_prefix,
-        Rscript_path,
+        Renv,
         style= 'pca',
     ):
 
@@ -116,15 +118,21 @@ def main(
         num_components = run_lsi(atac_frankendata)
         rna_frankendata.obsm[embedding] = atac_frankendata.obsm[embedding]
         rna_frankendata.uns['svd'] = atac_frankendata.uns['svd']
+    
+    print('Num components:', num_components)
 
     for resolution in resolutions:
         print('Running test with resolution: ', resolution)
-        results = run_slingshot(
-            get_slingshot_data(rna_frankendata, embedding, num_components, resolution), 
-            out_prefix, resolution, Rscript_path
-        )
 
-        rna_frankendata.obsm['slingresults_' + str(resolution)] = results.values[:,1:]
+        slingshot_data = get_slingshot_data(rna_frankendata, embedding, num_components, resolution)
+
+        if len(np.unique(slingshot_data['clusters'])) > 1:
+            results = run_slingshot(
+                slingshot_data, 
+                out_prefix, resolution, Renv
+            )
+
+            rna_frankendata.obsm['slingresults_' + str(resolution)] = results.values[:,1:]
 
     return rna_frankendata
 
@@ -136,7 +144,7 @@ def get_parser():
     parser.add_argument('--out-prefix', '-o', type = str, required=True)
     parser.add_argument('--style','-y', type = str, default = 'pca')
     parser.add_argument('--resolutions', '-r', type= float, nargs='+')
-    parser.add_argument('--Rscript-path','-R', type = str, required=True)
+    parser.add_argument('--R-env','-R', type = str, required=True)
 
     return parser
 
@@ -150,7 +158,7 @@ if __name__ == "__main__":
         out_prefix = args.out_prefix,
         style = args.style,
         resolutions = args.resolutions,
-        Rscript_path = args.Rscript_path
+        Renv = args.R_env
     )
 
     out_data.write_h5ad(args.out_prefix + '_results_adata.h5ad')

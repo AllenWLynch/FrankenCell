@@ -51,7 +51,7 @@ def main(data, results):
                 f1_score(
                     make_label_array(data.obs.state.values), 
                     make_label_array(data.obs[state_prediction].values),
-                    average = 'micro'
+                    average = 'macro'
                 )
             )
         except ValueError:
